@@ -1,0 +1,231 @@
+{
+  "entities": {
+    "ActorProfile": {
+      "title": "ActorProfile",
+      "description": "Authenticated actor profile, preferences, and skill-specific progress metrics.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner Firebase UID" },
+        "fullName": { "type": "string" },
+        "stageName": { "type": "string" },
+        "country": { "type": "string" },
+        "city": { "type": "string" },
+        "preferredLanguage": { "type": "string", "enum": ["en", "ur", "hi"] },
+        "experienceLevel": { "type": "string" },
+        "interests": { "type": "array" },
+        "actingGoals": { "type": "string" },
+        "isAdultConfirmed": { "type": "boolean" },
+        "hidePublicRanking": { "type": "boolean" },
+        "dailyGoalMinutes": { "type": "integer" },
+        "onboardingComplete": { "type": "boolean" },
+        "xp": { "type": "integer" },
+        "streakDays": { "type": "integer" },
+        "totalPracticeSeconds": { "type": "integer" },
+        "exercisesCompleted": { "type": "integer" },
+        "voiceScore": { "type": "integer" },
+        "actingScore": { "type": "integer" },
+        "movementScore": { "type": "integer" },
+        "subscriptionTier": { "type": "string", "enum": ["free", "pro", "premium"] },
+        "isSuspended": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "fullName",
+        "stageName",
+        "country",
+        "preferredLanguage",
+        "experienceLevel",
+        "interests",
+        "isAdultConfirmed",
+        "hidePublicRanking",
+        "xp",
+        "streakDays",
+        "totalPracticeSeconds",
+        "exercisesCompleted",
+        "voiceScore",
+        "actingScore",
+        "movementScore",
+        "subscriptionTier",
+        "isSuspended",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "ExerciseSession": {
+      "title": "ExerciseSession",
+      "description": "Completed timed exercise session log.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "exerciseId": { "type": "string" },
+        "exerciseTitle": { "type": "string" },
+        "departmentId": { "type": "string" },
+        "durationSeconds": { "type": "integer" },
+        "repetitions": { "type": "integer" },
+        "xpEarned": { "type": "integer" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "exerciseId", "exerciseTitle", "departmentId", "durationSeconds", "repetitions", "xpEarned", "createdAt"]
+    },
+    "ChecklistItem": {
+      "title": "ChecklistItem",
+      "description": "Customizable daily training schedule checklist item.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "timeOfDay": { "type": "string", "enum": ["morning", "afternoon", "evening"] },
+        "departmentId": { "type": "string" },
+        "durationMinutes": { "type": "integer" },
+        "isCompleted": { "type": "boolean" },
+        "sortOrder": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "timeOfDay", "departmentId", "durationMinutes", "isCompleted", "sortOrder", "createdAt", "updatedAt"]
+    },
+    "StudioRecording": {
+      "title": "StudioRecording",
+      "description": "Voice Studio or Camera Self-Tape practice recording metadata.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "studioType": { "type": "string", "enum": ["voice", "camera"] },
+        "localFilePath": { "type": "string" },
+        "durationSeconds": { "type": "integer" },
+        "estimatedWpm": { "type": "integer" },
+        "fillerWordsCount": { "type": "integer" },
+        "framingPreset": { "type": "string" },
+        "aiFeedback": { "type": "string" },
+        "personalNotes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "studioType", "localFilePath", "durationSeconds", "createdAt", "updatedAt"]
+    },
+    "CareerItem": {
+      "title": "CareerItem",
+      "description": "Audition & Career Center entry (credit, audition tracker, goal, headshot).",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "itemType": { "type": "string", "enum": ["credit", "audition", "goal", "headshot"] },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "status": { "type": "string" },
+        "notes": { "type": "string" },
+        "mediaUri": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "itemType", "title", "status", "createdAt", "updatedAt"]
+    },
+    "CommunityPost": {
+      "title": "CommunityPost",
+      "description": "Moderated global actor community discussion or challenge post.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "authorStageName": { "type": "string" },
+        "country": { "type": "string" },
+        "language": { "type": "string" },
+        "category": { "type": "string", "enum": ["discussion", "challenge", "collaboration", "feedback"] },
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "likesCount": { "type": "integer" },
+        "reportCount": { "type": "integer" },
+        "isHidden": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "authorStageName", "country", "language", "category", "title", "body", "likesCount", "reportCount", "isHidden", "createdAt", "updatedAt"]
+    },
+    "ModerationReport": {
+      "title": "ModerationReport",
+      "description": "User-submitted report on community content.",
+      "type": "object",
+      "properties": {
+        "reporterId": { "type": "string" },
+        "postId": { "type": "string" },
+        "reason": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "resolved", "dismissed"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reporterId", "postId", "reason", "status", "createdAt", "updatedAt"]
+    },
+    "CustomExercise": {
+      "title": "CustomExercise",
+      "description": "Admin-published exercise in the training catalog.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "departmentId": { "type": "string" },
+        "difficulty": { "type": "string" },
+        "durationSeconds": { "type": "integer" },
+        "instructions": { "type": "string" },
+        "correctTechnique": { "type": "string" },
+        "commonMistakes": { "type": "string" },
+        "objective": { "type": "string" },
+        "isPublished": { "type": "boolean" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "departmentId", "difficulty", "durationSeconds", "instructions", "isPublished", "createdBy", "createdAt", "updatedAt"]
+    },
+    "AdminRole": {
+      "title": "AdminRole",
+      "description": "Administrator role record.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["super_admin", "content_manager", "support_manager", "moderator"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "role", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/ActorProfile" },
+      "description": "Actor profile and skill progress metrics isolated per user."
+    },
+    "/users/{userId}/sessions/{sessionId}": {
+      "schema": { "$ref": "#/entities/ExerciseSession" },
+      "description": "Completed timed exercise sessions for a user."
+    },
+    "/users/{userId}/checklist/{itemId}": {
+      "schema": { "$ref": "#/entities/ChecklistItem" },
+      "description": "Customizable daily training checklist items for a user."
+    },
+    "/users/{userId}/recordings/{recordingId}": {
+      "schema": { "$ref": "#/entities/StudioRecording" },
+      "description": "Private voice and camera self-tape practice recordings metadata."
+    },
+    "/users/{userId}/career_items/{itemId}": {
+      "schema": { "$ref": "#/entities/CareerItem" },
+      "description": "Audition & career portfolio records for a user."
+    },
+    "/community_posts/{postId}": {
+      "schema": { "$ref": "#/entities/CommunityPost" },
+      "description": "Moderated global actor community posts."
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "#/entities/ModerationReport" },
+      "description": "Community moderation reports."
+    },
+    "/custom_exercises/{exerciseId}": {
+      "schema": { "$ref": "#/entities/CustomExercise" },
+      "description": "Admin-managed custom training exercises."
+    },
+    "/admins/{adminUid}": {
+      "schema": { "$ref": "#/entities/AdminRole" },
+      "description": "Authorized platform administrator roles."
+    }
+  }
+}

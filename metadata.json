@@ -1,0 +1,6 @@
+{
+  "name": "ACTORVERSE",
+  "description": "AI-powered global actor training & performance platform for voice, breath, emotion, camera acting, monologues, and coaching.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
